@@ -56,10 +56,43 @@ public class LCSDemo1 {
         }
     }
     
-    static class LCS<N, E extends Comparable<E>, S> {
-        Node<N>[]    path;
-        Element<E>[] left;
-        Element<E>[] right;
+    static class Result<R extends Comparable<R>, M, E extends Comparable<E>> implements Comparable<Result<R, M, E>> {
+        R            length;
+        M            min;
+        M            max;
+        Element<E>[] result;
+        
+        private Result(R length,
+                       M min,
+                       M max,
+                       Element<E>[] result) {
+            this.length = length;
+            this.min = min;
+            this.max = max;
+            this.result = result;
+        }
+        
+        static <R extends Comparable<R>, M, E extends Comparable<E>> Result<R, M, E> of(R length,
+                                                                                        M min,
+                                                                                        M max,
+                                                                                        Element<E>[] result) {
+            return new Result<R, M, E>(length,
+                                       min,
+                                       max,
+                                       result);
+        }
+        
+        @Override
+        public int compareTo(Result<R, M, E> o) {
+            return length.compareTo(o.length);
+        }
+    }
+    
+    static class LCS<N, E extends Comparable<E>, S, R extends Comparable<R>, M> {
+        Node<N>[]       path;
+        Element<E>[]    left;
+        Element<E>[]    right;
+        Result<R, M, E> result;
         
         public LCS(S l,
                    S r,
@@ -70,21 +103,57 @@ public class LCSDemo1 {
             this.right = turn.apply(r);
         }
         
-        Element<E> getTheLongestCommonSubelementsFromTwoGroupElements() {
+        Element<E>[] getTheLongestCommonSubelementsFromTwoGroupElements() {
             Stream.of(left)
                   .forEach(l -> {
                       fillInPathVectorByLoop(l);
                   });
-            return null;
+            return result.result;
         }
         
         void fillInPathVectorByLoop(Element<E> l) {
             Stream.of(right)
                   .forEach(r -> {
                       if (l.isCurrentTwoElementsEqual(r)) {
-                          
+                          setThePathVectorPointToValueOfFrontValuePlusOne();
+                      } else {
+                          setThePathVectorPointToInitValue();
                       }
+                      updateTheCurrentResultToGetTheMaxLengthOfSubElements();
                   });
+        }
+        
+        void setThePathVectorPointToValueOfFrontValuePlusOne() {
+            
+        }
+        
+        void setThePathVectorPointToInitValue() {
+            
+        }
+        
+        void updateTheCurrentResultToGetTheMaxLengthOfSubElements() {
+            Result<R, M, E> newResult = buildTheCurrentLengthResult();
+            if (isTheNewLengthLongerThanCurrentResult(newResult)) {
+                yesUpdateTheCurrentResult();
+            } else {
+                noNoNeedToUpdateTheCurrentResult();
+            }
+        }
+        
+        Result<R, M, E> buildTheCurrentLengthResult() {
+            return null;
+        }
+        
+        boolean isTheNewLengthLongerThanCurrentResult(Result<R, M, E> newResult) {
+            return false;
+        }
+        
+        void yesUpdateTheCurrentResult() {
+            
+        }
+        
+        void noNoNeedToUpdateTheCurrentResult() {
+            
         }
     }
     
