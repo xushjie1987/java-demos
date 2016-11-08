@@ -118,10 +118,7 @@ public class AppTest {
                
                @Override
                public Tuple4<String, Integer, Integer, String> map(Tuple4<String, Integer, Integer, String> value) throws Exception {
-                   System.out.println("number of this parallel subtask: " +
-                                      getRuntimeContext().getIndexOfThisSubtask() +
-                                      ", the parallelism with which the parallel task runs: " +
-                                      getRuntimeContext().getNumberOfParallelSubtasks());
+                   System.out.println("number of this parallel subtask: " + getRuntimeContext().getIndexOfThisSubtask() + ", the parallelism with which the parallel task runs: " + getRuntimeContext().getNumberOfParallelSubtasks());
                    return value;
                }
            })
