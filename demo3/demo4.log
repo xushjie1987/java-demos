@@ -1,0 +1,26 @@
+2016-11-25 15:56:13.200 ERROR [catalina-exec-41] com.testin.abtest.service.impl.TMetricServiceImpl.validateComposeMetricExpress:111 - ReferenceError: "floatingActionButtonClick" is not defined in <eval> at line number 1
+javax.script.ScriptException: ReferenceError: "floatingActionButtonClick" is not defined in <eval> at line number 1
+        at jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:467)
+        at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:451)
+        at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:403)
+        at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:399)
+        at jdk.nashorn.api.scripting.NashornScriptEngine.eval(NashornScriptEngine.java:155)
+Caused by: jdk.nashorn.internal.runtime.ECMAException: ReferenceError: "floatingActionButtonClick" is not defined
+        at jdk.nashorn.internal.runtime.ECMAErrors.error(ECMAErrors.java:57)
+        at jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:319)
+        at jdk.nashorn.internal.runtime.ECMAErrors.referenceError(ECMAErrors.java:291)
+        at jdk.nashorn.internal.objects.Global.__noSuchProperty__(Global.java:1426)
+        at jdk.nashorn.internal.scripts.Script$101$\^eval\_.:program(<eval>:1)
+        at jdk.nashorn.internal.runtime.ScriptFunctionData.invoke(ScriptFunctionData.java:637)
+        at jdk.nashorn.internal.runtime.ScriptFunction.invoke(ScriptFunction.java:494)
+        at jdk.nashorn.internal.runtime.ScriptRuntime.apply(ScriptRuntime.java:393)
+        at jdk.nashorn.api.scripting.NashornScriptEngine.evalImpl(NashornScriptEngine.java:446)
+        ... 81 common frames omitted
+
+2016-11-25 09:16:55.448 ERROR [catalina-exec-75] c.t.a.service.statistics.hypothesestest.HypothesesTest.computeConfidenceInterval:90 - compute confidence has exception
+2016-11-25 09:16:55.448 ERROR [catalina-exec-76] c.t.a.service.statistics.hypothesestest.HypothesesTest.computeConfidenceInterval:90 - compute confidence has exception
+2016-11-25 09:16:55.460 ERROR [catalina-exec-76] c.t.a.service.statistics.hypothesestest.HypothesesTest.computeConfidenceIntervalImprovementRatio:138 - Encountered error when computing the confidence interval improvement ratio:org.apache.commons.math3.exception.MathIllegalArgumentException: lower bound (0) must be strictly less than upper bound (0)
+2016-11-25 09:16:55.465 ERROR [catalina-exec-75] c.t.a.service.statistics.hypothesestest.HypothesesTest.computeConfidenceIntervalImprovementRatio:138 - Encountered error when computing the confidence interval improvement ratio:org.apache.commons.math3.exception.MathIllegalArgumentException: lower bound (0) must be strictly less than upper bound (0)
+
+
+

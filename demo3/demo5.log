@@ -1,0 +1,7 @@
+hello world
+[http:..]
+2016-11-25 09:16:55.448 ERROR [catalina-exec-75] c.t.a.service.statistics.hypothesestest.HypothesesTest.computeConfidenceInterval:90 - compute confidence has exception
+2016-11-25 09:16:55.460 ERROR [catalina-exec-76] c.t.a.service.statistics.hypothesestest.HypothesesTest.computeConfidenceIntervalImprovementRatio:138 - Encountered error when computing the confidence interval improvement ratio:org.apache.commons.math3.exception.MathIllegalArgumentException: lower bound (0) must be strictly less than upper bound (0)
+
+
+

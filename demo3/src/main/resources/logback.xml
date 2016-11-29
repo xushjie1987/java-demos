@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="file.web"
+        class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>demo3.log</File>
+        <rollingPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>demo3_%d{yyyy-MM-dd_HH-mm}.%i.log
+            </fileNamePattern>
+            <maxFileSize>1KB</maxFileSize>
+            <maxHistory>2</maxHistory>
+            <totalSizeCap>1MB</totalSizeCap>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS}%-5level[%thread]%logger{56}.%method:%L -%msg%n
+            </pattern>
+        </layout>
+    </appender>
+    <root level="info">
+        <appender-ref ref="file.web" />
+    </root>
+</configuration>  

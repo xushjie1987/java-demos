@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RollingFile name="RollingFile"
+    fileName="/home/es/workspace/log4j2/log4j2-demos/logs/druid.log"
+    filePattern="/home/es/workspace/log4j2/log4j2-demos/logs/$${date:yyyy-MM}/druid-%d{MM-dd-yyyy}-%i.log.gz">
+    <PatternLayout>
+        <Pattern>%d %p %c {1.} [%t] %m%n</Pattern>
+    </PatternLayout>
+    <Policies>
+        <TimeBasedTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="1 MB" />
+    </Policies>
+    <DefaultRolloverStrategy max="4" fileIndex="max" />
+</RollingFile>
+
