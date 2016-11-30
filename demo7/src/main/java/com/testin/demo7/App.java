@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @SpringBootApplication
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {"com.testin.demo7"})
+@ComponentScan(basePackages = { "com.testin.demo7" })
 @Controller
 @RequestMapping(path = "/perf")
 public class App {
