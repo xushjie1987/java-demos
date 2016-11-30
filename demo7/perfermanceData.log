@@ -32,3 +32,9 @@ Tag                                                  Avg(ms)         Min        
 2016-11-30 09:52:09,617 INFO [perf4j-async-stats-appender-sink-Perf4jAppender] o.p.TimingLogger [?:?] Performance Statistics   2016-11-30 09:51:50 - 2016-11-30 09:52:00
 Tag                                                  Avg(ms)         Min         Max     Std Dev       Count
 
+2016-11-30 09:52:19,619 INFO [perf4j-async-stats-appender-sink-Perf4jAppender] o.p.TimingLogger [?:?] Performance Statistics   2016-11-30 09:52:00 - 2016-11-30 09:52:10
+Tag                                                  Avg(ms)         Min         Max     Std Dev       Count
+
+2016-11-30 09:52:29,620 INFO [perf4j-async-stats-appender-sink-Perf4jAppender] o.p.TimingLogger [?:?] Performance Statistics   2016-11-30 09:52:10 - 2016-11-30 09:52:20
+Tag                                                  Avg(ms)         Min         Max     Std Dev       Count
+
