@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.testin.mapper.DruidDataSourceMapper">
+  <resultMap id="BaseResultMap" type="com.testin.domain.DruidDataSource">
+    <id column="dataSource" jdbcType="VARCHAR" property="datasource" />
+    <result column="created_date" jdbcType="VARCHAR" property="createdDate" />
+    <result column="commit_metadata_sha1" jdbcType="VARCHAR" property="commitMetadataSha1" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.testin.domain.DruidDataSource">
+    <result column="commit_metadata_payload" jdbcType="LONGVARBINARY" property="commitMetadataPayload" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    dataSource, created_date, commit_metadata_sha1
+  </sql>
+  <sql id="Blob_Column_List">
+    commit_metadata_payload
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.testin.domain.DruidDataSourceCriteria" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from druid_dataSource
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.testin.domain.DruidDataSourceCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from druid_dataSource
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from druid_dataSource
+    where dataSource = #{datasource,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from druid_dataSource
+    where dataSource = #{datasource,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.testin.domain.DruidDataSourceCriteria">
+    delete from druid_dataSource
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.testin.domain.DruidDataSource">
+    insert into druid_dataSource (dataSource, created_date, commit_metadata_sha1, 
+      commit_metadata_payload)
+    values (#{datasource,jdbcType=VARCHAR}, #{createdDate,jdbcType=VARCHAR}, #{commitMetadataSha1,jdbcType=VARCHAR}, 
+      #{commitMetadataPayload,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.testin.domain.DruidDataSource">
+    insert into druid_dataSource
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="datasource != null">
+        dataSource,
+      </if>
+      <if test="createdDate != null">
+        created_date,
+      </if>
+      <if test="commitMetadataSha1 != null">
+        commit_metadata_sha1,
+      </if>
+      <if test="commitMetadataPayload != null">
+        commit_metadata_payload,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="datasource != null">
+        #{datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        #{createdDate,jdbcType=VARCHAR},
+      </if>
+      <if test="commitMetadataSha1 != null">
+        #{commitMetadataSha1,jdbcType=VARCHAR},
+      </if>
+      <if test="commitMetadataPayload != null">
+        #{commitMetadataPayload,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.testin.domain.DruidDataSourceCriteria" resultType="java.lang.Long">
+    select count(*) from druid_dataSource
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update druid_dataSource
+    <set>
+      <if test="record.datasource != null">
+        dataSource = #{record.datasource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdDate != null">
+        created_date = #{record.createdDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commitMetadataSha1 != null">
+        commit_metadata_sha1 = #{record.commitMetadataSha1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commitMetadataPayload != null">
+        commit_metadata_payload = #{record.commitMetadataPayload,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update druid_dataSource
+    set dataSource = #{record.datasource,jdbcType=VARCHAR},
+      created_date = #{record.createdDate,jdbcType=VARCHAR},
+      commit_metadata_sha1 = #{record.commitMetadataSha1,jdbcType=VARCHAR},
+      commit_metadata_payload = #{record.commitMetadataPayload,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update druid_dataSource
+    set dataSource = #{record.datasource,jdbcType=VARCHAR},
+      created_date = #{record.createdDate,jdbcType=VARCHAR},
+      commit_metadata_sha1 = #{record.commitMetadataSha1,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.testin.domain.DruidDataSource">
+    update druid_dataSource
+    <set>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=VARCHAR},
+      </if>
+      <if test="commitMetadataSha1 != null">
+        commit_metadata_sha1 = #{commitMetadataSha1,jdbcType=VARCHAR},
+      </if>
+      <if test="commitMetadataPayload != null">
+        commit_metadata_payload = #{commitMetadataPayload,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where dataSource = #{datasource,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.testin.domain.DruidDataSource">
+    update druid_dataSource
+    set created_date = #{createdDate,jdbcType=VARCHAR},
+      commit_metadata_sha1 = #{commitMetadataSha1,jdbcType=VARCHAR},
+      commit_metadata_payload = #{commitMetadataPayload,jdbcType=LONGVARBINARY}
+    where dataSource = #{datasource,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.testin.domain.DruidDataSource">
+    update druid_dataSource
+    set created_date = #{createdDate,jdbcType=VARCHAR},
+      commit_metadata_sha1 = #{commitMetadataSha1,jdbcType=VARCHAR}
+    where dataSource = #{datasource,jdbcType=VARCHAR}
+  </update>
+</mapper>
